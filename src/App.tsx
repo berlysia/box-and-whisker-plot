@@ -68,8 +68,14 @@ function genThinTicks(_min: number, max: number) {
   return result;
 }
 
+const defaultValue = `name min lowerQuartile median upperQuartile max average mark ok
+title1 100 200 300 400 500 250 350 1
+title2 100 200 300 400 500 250 350 -1
+title3 100 200 300 400 500 250 350 0
+`;
+
 export default function App() {
-  const [dataStr, setData] = useState("");
+  const [dataStr, setData] = useState(defaultValue);
   const [yMin, setYMin] = useState(0);
   const [yMax, setYMax] = useState(100);
   const seed = useTransform(dataStr);
@@ -95,8 +101,6 @@ export default function App() {
           style={{ width: 640, height: "4em" }}
           value={dataStr}
           onChange={(e) => setData(e.currentTarget.value)}
-          placeholder={`name min lowerQuartile median upperQuartile max average mark ok
-foo 0 20 40 60 80 50 75 1`}
         ></textarea>
         <label>
           yMin

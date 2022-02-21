@@ -78,14 +78,16 @@ class CandlestickSeries extends AbstractSeries {
                 height={Math.abs(yOpen - yClose)}
                 fill={fillFunctor?.(d)}
               />
-              <line
-                x1={-xWidth}
-                x2={xWidth}
-                y1={yMark}
-                y2={yMark}
-                strokeWidth={4}
-                {...(ok > 0 ? markOkAttrs : ok < 0 ? markNgAttrs : lineAttrs)}
-              />
+              {typeof yMark === "number" && (
+                <line
+                  x1={-xWidth}
+                  x2={xWidth}
+                  y1={yMark}
+                  y2={yMark}
+                  strokeWidth={4}
+                  {...(ok > 0 ? markOkAttrs : ok < 0 ? markNgAttrs : lineAttrs)}
+                />
+              )}
               <line
                 x1={-xWidth * 1.2}
                 x2={xWidth * 1.2}
