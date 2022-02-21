@@ -29,7 +29,9 @@ function useTransform(data: string) {
 
     const series: Data[] = tail.map(
       (row) =>
-        Object.fromEntries(row.map((x, i) => [head[i], parseFloat(x)])) as Data
+        Object.fromEntries(
+          row.map((x, i) => [head[i], head[i] === "name" ? x : parseFloat(x)])
+        ) as Data
     );
     return series.map((v, i) => ({
       x: i,
@@ -93,10 +95,12 @@ export default function App() {
           <br />
           header row must be values listed below(unordered, parseFloat will be
           applied):
-          <pre>
-            name min lowerQuartile median upperQuartile max average mark ok
-          </pre>
         </p>
+        <pre>
+          <code>
+            name min lowerQuartile median upperQuartile max average mark ok
+          </code>
+        </pre>
         <textarea
           style={{ width: 640, height: "4em" }}
           value={dataStr}
